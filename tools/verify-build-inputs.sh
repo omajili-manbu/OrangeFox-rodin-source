@@ -93,7 +93,7 @@ check_sha256 "${DEVICE_DIR}/patches/build-make/rodin-complete.patch" 91f01d03733
 check_sha256 "${DEVICE_DIR}/patches/bootable-recovery/rodin-complete.patch" f3ef4b6e78c78e08e2d5e6f42a0873dd668688e4de2ec4d06087085c9bda42ab
 check_sha256 "${DEVICE_DIR}/patches/hardware-interfaces/rodin-fastbootd-bootcontrol-nonblocking.patch" e10f789766f359d5d4b91d2fa7ee8418d5c39694f7c914d5cc02c6aa533755b8
 check_sha256 "${DEVICE_DIR}/patches/system-core/rodin-fastbootd-optional-hals-nonblocking.patch" 740b10ad8cae477e8d387406b61594db869f83ab3fe0a15af46ec4ca6fc655e6
-check_sha256 "${DEVICE_DIR}/manifests/device-blobs.sha256" e55a8241c21ad94f891e8bac38c536c5b4db5b62cfe5f2390c932ae3a10ffe15
+check_sha256 "${DEVICE_DIR}/manifests/device-blobs.sha256" b1ddb919a21eb0e382f0aa4e7734ee6084b82eb6b95cd2bb62a957b99ddd4843
 
 if [[ "${RODIN_ALLOW_UNPINNED_SOURCE:-0}" != "1" ]]; then
     filtered_manifest="$(mktemp "${TMPDIR:-/tmp}/rodin-pinned-manifest.XXXXXX.xml")"

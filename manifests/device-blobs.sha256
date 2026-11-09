@@ -326,7 +326,7 @@ f22f0325fd9df9dc619f648392a5e2028c51c260f158f9b8325b22cb5dd54781  device/xiaomi/
 cac956b042c3e8848a39f67ea6e38401a5f977a33e86ff7ad73d1a3532295b49  device/xiaomi/rodin/recovery/root/lib/modules/xm_power.ko
 182b92cc8df08e6ab81d734239601cfae38d788dc2244490fa630ccf9ff81317  device/xiaomi/rodin/recovery/root/lib/modules/zram.ko
 4128888a682fe819332548b2febd3e9c667a52ae6734547d87b8f49423f96b69  device/xiaomi/rodin/recovery/root/lib/modules/zsmalloc.ko
-d34437e513ce848a5b5c74d32835ff4ef6264fd4a9c93598c4b496c3235cce41  device/xiaomi/rodin/recovery/root/system/bin/load-haptics-module.sh
+57cbc383a84edba603ff861179c766949240a8047604c5009040ce14cbf5c44a  device/xiaomi/rodin/recovery/root/system/bin/load-haptics-module.sh
 26b5cff772d17d90235c5f94d756bf05ef6f8196b28c117419211effe23d2186  device/xiaomi/rodin/recovery/root/system/bin/load-touch-modules.sh
 bdf0168dbb1d03a28a41d3a5ef484cd2b2a80abc389db3fe91461215b99ba410  device/xiaomi/rodin/recovery/root/system/bin/wait-touch-service.sh
 561176fdcca2669f8e718f911bba59a745bd43f05083f2249b80e627b73a395d  device/xiaomi/rodin/recovery/root/system/etc/cgroups.json
