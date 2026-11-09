@@ -10,7 +10,7 @@ on:
       runner:
         description: Runner label
         required: true
-        default: "ubuntu-latest"
+        default: "ubuntu-24.04"
 
 jobs:
   build:
