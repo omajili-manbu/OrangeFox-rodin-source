@@ -123,4 +123,17 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/proprietary/vendor/etc/vintf/manifest/android.hardware.security.keymint-service.mitee.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.security.keymint-service.mitee.xml \
     $(DEVICE_PATH)/proprietary/vendor/etc/vintf/manifest/android.hardware.security.secureclock-service.mitee.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.security.secureclock-service.mitee.xml \
     $(DEVICE_PATH)/proprietary/vendor/etc/vintf/manifest/android.hardware.security.sharedsecret-service.mitee.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.security.sharedsecret-service.mitee.xml \
-    $(DEVICE_PATH)/proprietary/vendor/etc/vintf/manifest/android.hardware.weaver-service.nxp.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.weaver-service.nxp.xml
+    $(DEVICE_PATH)/proprietary/vendor/etc/vintf/manifest/android.hardware.weaver-service.nxp.xml:recovery/root/vendor/etc/vintf/manifest/android.hardware.weaver-service.nxp.xml \
+    $(DEVICE_PATH)/assets/theme/maintainer.png:recovery/root/twres/images/Default/About/maintainer.png \
+    $(DEVICE_PATH)/assets/theme/maintainer_zh.png:recovery/root/twres/images/Default/About/maintainer_zh.png \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/haptic_config.bin:recovery/root/vendor/firmware/haptic_config.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/0_click_P_RTP.bin:recovery/root/vendor/firmware/0_click_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/1_doubelClick_P_RTP.bin:recovery/root/vendor/firmware/1_doubelClick_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/2_tick_P_RTP.bin:recovery/root/vendor/firmware/2_tick_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/3_thud_P_RTP.bin:recovery/root/vendor/firmware/3_thud_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/4_pop_P_RTP.bin:recovery/root/vendor/firmware/4_pop_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/5_heavyClick_P_RTP.bin:recovery/root/vendor/firmware/5_heavyClick_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/6_ringTone1_P_RTP.bin:recovery/root/vendor/firmware/6_ringTone1_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/7_ringTone2_P_RTP.bin:recovery/root/vendor/firmware/7_ringTone2_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/8_ringTone3_P_RTP.bin:recovery/root/vendor/firmware/8_ringTone3_P_RTP.bin \
+    $(DEVICE_PATH)/proprietary/haptics/firmware/9_ringTone4_P_RTP.bin:recovery/root/vendor/firmware/9_ringTone4_P_RTP.bin

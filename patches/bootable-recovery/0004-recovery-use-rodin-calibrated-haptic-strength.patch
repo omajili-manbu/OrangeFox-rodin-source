@@ -1,8 +1,22 @@
 --- a/minuitwrp/events.cpp
 +++ b/minuitwrp/events.cpp
-@@ -192,8 +192,31 @@
+@@ -192,8 +192,45 @@
          write_to_file(LEDS_HAPTICS_DURATION_FILE, tout);
          write_to_file(LEDS_HAPTICS_ACTIVATE_FILE, "1");
++    } else if (std::ifstream(
++            "/sys/bus/i2c/devices/0-005f/rtp").good()) {
++        // rodin's ics rt6010 (AAC) motor plays preset effects through its
++        // "rtp" node; the driver resamples and streams the selected preset
++        // waveform file served from the recovery ramdisk firmware.
++        int strength = timeout_ms;
++        if (strength < 1) strength = 1;
++        if (strength > 100) strength = 100;
++
++        // 2 = tick for light taps, 0 = click for the common range,
++        // 5 = heavyClick for strong confirmations.
++        const char* preset = (strength < 30) ? "2"
++            : (strength < 80) ? "0" : "5";
++        write_to_file("/sys/bus/i2c/devices/0-005f/rtp", preset);
      } else if (std::ifstream(SIH_HAPTICS_ACTIVATE_FILE).good()) {
 -        write_to_file(SIH_HAPTICS_DURATION_FILE, tout);
 +        int strength = timeout_ms;
@@ -37,7 +51,7 @@
 +++ b/data.cpp
 @@ -948,9 +948,9 @@
    //[f/d]
-  
+
  #ifndef TW_NO_HAPTICS
 -	mPersist.SetValue("tw_button_vibrate", "40");
 -	mPersist.SetValue("tw_keyboard_vibrate", "40");
@@ -51,29 +65,29 @@
 --- a/gui/theme/portrait_hdpi/pages/settings.xml
 +++ b/gui/theme/portrait_hdpi/pages/settings.xml
 @@ -592,7 +592,7 @@
- 
+
  			<slidervalue>
  				<placement x="%slider_x%" y="%row1_3_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_button_vibrate" min="0" max="300" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_button_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
- 
+
  			<text style="text_body1">
 @@ -609,7 +609,7 @@
- 
+
  			<slidervalue>
  				<placement x="%slider_x%" y="%row3_1a_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_keyboard_vibrate" min="0" max="300" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_keyboard_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
- 
+
  			<text style="text_body1">
 @@ -626,7 +626,7 @@
- 
+
  			<slidervalue>
  				<placement x="%slider_x%" y="%row4_3_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_action_vibrate" min="0" max="500" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_action_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
- 
+
  			<template name="gestures"/>

@@ -1,0 +1,106 @@
+diff --git a/gui/theme/common/languages/en.xml b/gui/theme/common/languages/en.xml
+index 7c64c5a..eae7148 100644
+--- a/gui/theme/common/languages/en.xml
++++ b/gui/theme/common/languages/en.xml
+@@ -972,6 +972,7 @@
+ 		
+ 		<!-- About -->
+ 		<string name="abt_maintainer">Maintainer</string>
++		<string name="abt_zh_localization">Chinese localization</string>
+ 		<string name="abt_fd">Theme creator &amp; designer</string>
+ 		<string name="abt_bork">CEO, Site &amp; UI</string>
+ 		<string name="abt_dj">Build system, legend maintainer</string>
+diff --git a/gui/theme/extra-languages/languages/zh_CN.xml b/gui/theme/extra-languages/languages/zh_CN.xml
+index 16d1066..156943a 100644
+--- a/gui/theme/extra-languages/languages/zh_CN.xml
++++ b/gui/theme/extra-languages/languages/zh_CN.xml
+@@ -941,6 +941,7 @@
+         <string name="fox_ota_lite">OTA &amp; ROM</string>
+         <!-- About -->
+         <string name="abt_maintainer">维护人员</string>
++        <string name="abt_zh_localization">中文本地化维护</string>
+         <string name="abt_fd">主题创建者 &amp; 设计师</string>
+         <string name="abt_bork">CEO，网站 &amp; 界面</string>
+         <string name="abt_dj">构建系统，维护者简介</string>
+diff --git a/gui/theme/portrait_hdpi/pages/settings.xml b/gui/theme/portrait_hdpi/pages/settings.xml
+index db82784..87692a7 100644
+--- a/gui/theme/portrait_hdpi/pages/settings.xml
++++ b/gui/theme/portrait_hdpi/pages/settings.xml
+@@ -1156,6 +1156,28 @@
+ 			</text>
+ 			<!-- Card -->
+ 			
++			<!-- zh_CN localization maintainer card -->
++			<image>
++				<image resource="maintainer_zh"/>
++				<placement x="%card_img_x%" y="%card_img5_y%"/>
++			</image>
++
++			<image>
++				<image resource="card"/>
++				<placement x="0" y="%card5_y%"/>
++			</image>
++
++			<text style="about_name">
++				<placement x="%card_txt_x%" y="%card_img5_y%"/>
++				<text>omajili-manbu</text>
++			</text>
++
++			<text style="about_info">
++				<placement x="%card_txt_x%" y="%cardtxt_9%"/>
++				<text>{@abt_zh_localization}</text>
++			</text>
++			<!-- Card -->
++			
+ 			<!-- Credits button when maintainer is OrangeFox developer -->
+ 			<image>
+ 				<condition var1="of_maintainer" op="&lt;=" var2="3"/>
+@@ -1187,7 +1209,7 @@
+ 				<condition var1="of_maintainer" op="!=" var2="3"/>
+ 				<condition var1="of_maintainer" op="!=" var2="2"/>
+ 				<condition var1="of_maintainer" op="!=" var2="1"/>
+-				<placement x="752" y="%card4_btn_y%"/>
++				<placement x="752" y="%card5_btn_y%"/>
+ 				<text>{@more}</text>
+ 				<action function="set">credits_page=0</action>
+ 				<action function="page">about_credits</action>
+diff --git a/gui/theme/portrait_hdpi/resources/images.xml b/gui/theme/portrait_hdpi/resources/images.xml
+index 1d8dec0..fd0b14f 100644
+--- a/gui/theme/portrait_hdpi/resources/images.xml
++++ b/gui/theme/portrait_hdpi/resources/images.xml
+@@ -122,5 +122,6 @@
+ 		<image name="author_yan" filename="Default/About/author_yan" retainaspect="1"/>
+ 		<image name="author_jabba" filename="Default/About/author_jabba" retainaspect="1"/>
+ 		<image name="maintainer_img" filename="Default/About/maintainer" retainaspect="1"/>
++		<image name="maintainer_zh" filename="Default/About/maintainer_zh" retainaspect="1"/>
+ 	</resources>
+ </recovery>
+diff --git a/gui/theme/portrait_hdpi/resources/vars.xml b/gui/theme/portrait_hdpi/resources/vars.xml
+index 7dcffc2..f1cad1c 100644
+--- a/gui/theme/portrait_hdpi/resources/vars.xml
++++ b/gui/theme/portrait_hdpi/resources/vars.xml
+@@ -308,12 +308,16 @@
+ 		<variable name="cardtxt_6" value="1354+%cutout_w%"/>
+ 		<variable name="cardtxt_7" value="1582+%cutout_w%"/>
+ 		<variable name="cardtxt_8" value="1642+%cutout_w%"/>
++		<variable name="cardtxt_9" value="1870+%cutout_w%"/>
++		<variable name="cardtxt_10" value="1930+%cutout_w%"/>
+ 		
+ 		<variable name="card1_y" value="576+%cutout_w%"/>
+ 		<variable name="card2_y" value="864+%cutout_w%"/>
+ 		<variable name="card3_y" value="1152+%cutout_w%"/>
+ 		<variable name="card4_y" value="1440+%cutout_w%"/>
+ 		<variable name="card4_btn_y" value="1604+%cutout_w%"/>
++		<variable name="card5_y" value="1728+%cutout_w%"/>
++		<variable name="card5_btn_y" value="1892+%cutout_w%"/>
+ 		
+ 		<variable name="card1_mtag_x" value="744"/>
+ 		<variable name="card1_ctag_x" value="748"/>
+@@ -330,6 +334,7 @@
+ 		<variable name="card_img2_y" value="936+%cutout_w%"/>
+ 		<variable name="card_img3_y" value="1224+%cutout_w%"/>
+ 		<variable name="card_img4_y" value="1512+%cutout_w%"/>
++		<variable name="card_img5_y" value="1800+%cutout_w%"/>
+ 		
+ 		<variable name="card_txt_x" value="300"/>
+ 		<variable name="card_img_x" value="72"/>
