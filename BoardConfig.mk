@@ -135,7 +135,12 @@ TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_EROFS := true
-TW_DEFAULT_LANGUAGE := en
+# Ship Simplified Chinese alongside English. TW_EXTRA_LANGUAGES stages
+# gui/theme/extra-languages, and zh_CN.xml's wqy-microhei font overrides are
+# rewritten to the MiSans.ttf CJK face by the packing callback before fonts
+# are pruned.
+TW_EXTRA_LANGUAGES := true
+TW_DEFAULT_LANGUAGE := zh_CN
 # The first decrypt page opens before encrypted Fox settings can be read.
 OF_LOAD_DEFAULT_LANGUAGE_BEFORE_DECRYPT := 1
 TW_HAS_MTP := true

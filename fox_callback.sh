@@ -52,7 +52,7 @@ if [ -d "$ramdisk/twres/fonts" ]; then
         -delete
 fi
 
-# Package English only in the final rodin recovery ramdisk.
+# Package English and Simplified Chinese in the final rodin recovery ramdisk.
 if [ -d "$ramdisk/twres/languages" ]; then
     if [ ! -f "$ramdisk/twres/languages/en.xml" ]; then
         echo "Missing required English language resource" >&2
@@ -61,6 +61,7 @@ if [ -d "$ramdisk/twres/languages" ]; then
 
     find "$ramdisk/twres/languages" -maxdepth 1 -type f \
         ! -name en.xml \
+        ! -name zh_CN.xml \
         -delete
 fi
 
