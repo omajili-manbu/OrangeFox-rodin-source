@@ -66,6 +66,11 @@ jobs:
 
           git clone https://gitlab.com/OrangeFox/sync.git "$GITHUB_WORKSPACE/ofox-sync"
           cd "$GITHUB_WORKSPACE/ofox-sync"
+          # Pin the sync tooling to the revision this device tree was authored
+          # and validated against. Later sync patches rework build/make
+          # (BOARD_RECOVERY_IMAGE_PREPARE checksum ordering) and break the
+          # rodin patch stack.
+          git checkout 14eca5f
 
           ./orangefox_sync.sh \
             --branch "${{ inputs.branch }}" \
