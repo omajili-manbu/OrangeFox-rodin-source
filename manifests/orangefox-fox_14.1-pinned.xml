@@ -4,6 +4,7 @@
   <remote name="TeamWin" fetch="https://github.com/TeamWin" review="https://gerrit.twrp.me"/>
   <remote name="aosp" fetch="https://android.googlesource.com" review="https://android-review.googlesource.com/"/>
   <remote name="github" fetch="https://github.com"/>
+  <remote name="OrangeFox" fetch="https://gitlab.com/OrangeFox"/>
   <remote name="nebrassy" fetch="https://github.com/nebrassy"/>
   
   <default remote="aosp" revision="refs/tags/android-14.0.0_r67" sync-j="4"/>
@@ -691,4 +692,8 @@
   <superproject name="platform/superproject" revision="android-14.0.0_r67"/>
   
   <contactinfo bugurl="go/repo-bug"/>
+
+  <!-- Cloned by the sync script outside the repo manifest; pinned because
+       verify-build-inputs.sh requires this exact vendor/recovery revision. -->
+  <project name="vendor/recovery" path="vendor/recovery" remote="OrangeFox" revision="af3d99b83adedf88fa9992d9320c5ce9811c6b08" dest-branch="fox_14.1"/>
 </manifest>
