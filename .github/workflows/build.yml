@@ -36,9 +36,7 @@ jobs:
             /usr/share/dotnet \
             /opt/ghc \
             /usr/local/.ghcup \
-            /opt/hostedtoolcache/CodeQL \
-            /opt/hostedtoolcache/Ruby \
-            /opt/hostedtoolcache/PyPy \
+            /opt/hostedtoolcache \
             /usr/local/share/boost
           sudo docker image prune -af >/dev/null 2>&1 || true
           sudo swapoff /swapfile 2>/dev/null || true
@@ -126,7 +124,10 @@ jobs:
 
           rm -rf "$GITHUB_WORKSPACE/ofox-sync"
 
-          SWAPSIZE=12G \
+          # 16 GB: the low-memory build requires at least 12 GiB of SwapTotal,
+          # and a 12 GiB swapfile falls 4 KiB short because the first page
+          # holds the swap signature.
+          SWAPSIZE=16G \
             "$GITHUB_WORKSPACE/OrangeFox/device/xiaomi/rodin/.github/scripts/setup-swap.sh"
 
           df -h
