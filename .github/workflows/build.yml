@@ -23,6 +23,28 @@ jobs:
         with:
           path: device-tree
 
+      - name: Free runner disk space
+        run: |
+          set -euo pipefail
+          # The 14.1 tree sync plus the build out directory need more space
+          # than the stock runner image leaves free. Drop preinstalled
+          # toolchains this build does not use, prune docker images, and
+          # release the default 3 GB swapfile so the low-memory build can
+          # create a larger one.
+          sudo rm -rf \
+            /usr/local/lib/android \
+            /usr/share/dotnet \
+            /opt/ghc \
+            /usr/local/.ghcup \
+            /opt/hostedtoolcache/CodeQL \
+            /opt/hostedtoolcache/Ruby \
+            /opt/hostedtoolcache/PyPy \
+            /usr/local/share/boost
+          sudo docker image prune -af >/dev/null 2>&1 || true
+          sudo swapoff /swapfile 2>/dev/null || true
+          sudo rm -f /swapfile
+          df -h /
+
       - name: Install host packages
         shell: bash
         run: |
