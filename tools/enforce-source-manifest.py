@@ -6,8 +6,13 @@ records the exact revisions this device tree was authored and validated
 against. Projects whose pinned revision is a 40-hex sha are enforced: the
 revision is fetched (depth 1) from the hosting remote when the local clone
 lacks it, and HEAD is detached onto it. Tag-based revisions are frozen
-AOSP pins and are left as synced. Exits non-zero when an enforced revision
-cannot be materialized.
+AOSP pins and are left as synced.
+
+The sync tooling also leaves uncommitted edits in the worktree (build/make,
+system/vold, system/update_engine, vendor/twrp). The rodin patch stack
+re-implements those edits and expects the pristine pinned state, so all
+uncommitted worktree changes are discarded after the revision is pinned.
+Exits non-zero when an enforced revision cannot be materialized.
 """
 
 import argparse
@@ -41,23 +46,28 @@ def enforce_project(top, rel, rev, fetch_url, results):
         return
     if head.stdout.strip() == rev:
         results["matched"] += 1
-        return
-    if run_git(["cat-file", "-e", f"{rev}^{{commit}}"], repo).returncode != 0:
-        fetched = run_git(["fetch", "--depth", "1", fetch_url, rev], repo)
-        if fetched.returncode != 0:
+    else:
+        if run_git(["cat-file", "-e", f"{rev}^{{commit}}"], repo).returncode != 0:
+            fetched = run_git(["fetch", "--depth", "1", fetch_url, rev], repo)
+            if fetched.returncode != 0:
+                results["failures"].append(
+                    f"{rel}: fetch {rev} failed:\n{fetched.stdout.strip()}"
+                )
+                return
+        checkout = run_git(["checkout", "--detach", rev], repo)
+        if checkout.returncode != 0:
+            checkout = run_git(["checkout", "--detach", "FETCH_HEAD"], repo)
+        if checkout.returncode != 0:
             results["failures"].append(
-                f"{rel}: fetch {rev} failed:\n{fetched.stdout.strip()}"
+                f"{rel}: checkout {rev} failed:\n{checkout.stdout.strip()}"
             )
             return
-    checkout = run_git(["checkout", "--detach", rev], repo)
-    if checkout.returncode != 0:
-        checkout = run_git(["checkout", "--detach", "FETCH_HEAD"], repo)
-    if checkout.returncode != 0:
+        results["detached"].append(rel)
+    reset = run_git(["reset", "--hard", "--quiet"], repo)
+    if reset.returncode != 0:
         results["failures"].append(
-            f"{rel}: checkout {rev} failed:\n{checkout.stdout.strip()}"
+            f"{rel}: worktree reset failed:\n{reset.stdout.strip()}"
         )
-        return
-    results["detached"] += 1
 
 
 def main() -> int:
@@ -92,7 +102,7 @@ def main() -> int:
         fetch_url = f"{remote_fetch}/{name}" if remote_fetch else "origin"
         jobs.append((rel, rev, fetch_url))
 
-    results = {"matched": 0, "detached": 0, "failures": []}
+    results = {"matched": 0, "detached": [], "failures": []}
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         list(
             pool.map(
@@ -103,7 +113,9 @@ def main() -> int:
 
     print(
         f"Pinned source checkout: {results['matched']} matched, "
-        f"{results['detached']} detached, {skipped} non-sha or absent skipped"
+        f"{len(results['detached'])} detached "
+        f"({', '.join(results['detached']) or 'none'}), "
+        f"{skipped} non-sha or absent skipped"
     )
     for failure in results["failures"]:
         print(f"ERROR: {failure}", file=sys.stderr)
