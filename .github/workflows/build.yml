@@ -91,6 +91,12 @@ jobs:
             "$GITHUB_WORKSPACE/device-tree/" \
             "$GITHUB_WORKSPACE/OrangeFox/device/xiaomi/rodin/"
 
+      - name: Enforce pinned source revisions
+        run: |
+          python3 "$GITHUB_WORKSPACE/OrangeFox/device/xiaomi/rodin/tools/enforce-source-manifest.py" \
+            "$GITHUB_WORKSPACE/OrangeFox" \
+            "$GITHUB_WORKSPACE/OrangeFox/device/xiaomi/rodin/manifests/orangefox-fox_14.1-pinned.xml"
+
       - name: Prepare build environment
         shell: bash
         run: |
