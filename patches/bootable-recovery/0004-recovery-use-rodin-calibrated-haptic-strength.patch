@@ -51,7 +51,7 @@
 +++ b/data.cpp
 @@ -948,9 +948,9 @@
    //[f/d]
-
+  
  #ifndef TW_NO_HAPTICS
 -	mPersist.SetValue("tw_button_vibrate", "40");
 -	mPersist.SetValue("tw_keyboard_vibrate", "40");
@@ -65,29 +65,29 @@
 --- a/gui/theme/portrait_hdpi/pages/settings.xml
 +++ b/gui/theme/portrait_hdpi/pages/settings.xml
 @@ -592,7 +592,7 @@
-
+ 
  			<slidervalue>
  				<placement x="%slider_x%" y="%row1_3_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_button_vibrate" min="0" max="300" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_button_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
-
+ 
  			<text style="text_body1">
 @@ -609,7 +609,7 @@
-
+ 
  			<slidervalue>
  				<placement x="%slider_x%" y="%row3_1a_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_keyboard_vibrate" min="0" max="300" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_keyboard_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
-
+ 
  			<text style="text_body1">
 @@ -626,7 +626,7 @@
-
+ 
  			<slidervalue>
  				<placement x="%slider_x%" y="%row4_3_y%" w="%slidervalue_w%"/>
 -				<data variable="tw_action_vibrate" min="0" max="500" showrange="0" showcurr="0" changeondrag="1"/>
 +				<data variable="tw_action_vibrate" min="0" max="100" showrange="0" showcurr="0" changeondrag="1"/>
  			</slidervalue>
-
+ 
  			<template name="gestures"/>
