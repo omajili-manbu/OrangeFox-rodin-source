@@ -171,3 +171,7 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 
 # NEES: native ARM64 Edify fallback for legacy ARM32 recovery ZIPs
 TARGET_RECOVERY_DEVICE_MODULES += updater
+
+# Recovery-only sepolicy additions (feeds sepolicy.recovery; no effect on
+# normal system/vendor builds).
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy

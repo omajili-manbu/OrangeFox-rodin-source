@@ -1,0 +1,5 @@
+# rodin recovery: read access to installed app directories under /data/app.
+# Without these allows, each directory search is audit-logged (the recovery
+# domain is permissive), flooding the kernel console during /data scans.
+allow recovery apk_data_file:dir r_dir_perms;
+allow recovery apk_data_file:file r_file_perms;
